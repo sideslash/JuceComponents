@@ -8,6 +8,9 @@
       <FILE id="LQNZCh" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
       <FILE id="ljfxnF" name="MainComponent.cpp" compile="1" resource="0"
             file="Source/MainComponent.cpp"/>
+      <FILE id="umck8h" name="LockFreeQueue.h" compile="0" resource="0" file="Source/LockFreeQueue.h"/>
+      <FILE id="L1Vh2I" name="LockFreeQueue.cpp" compile="1" resource="0"
+            file="Source/LockFreeQueue.cpp"/>
       <FILE id="zMHtGr" name="WaveVisualizer.h" compile="0" resource="0"
             file="Source/WaveVisualizer.h"/>
       <FILE id="JN8zU4" name="WaveVisualizer.cpp" compile="1" resource="0"

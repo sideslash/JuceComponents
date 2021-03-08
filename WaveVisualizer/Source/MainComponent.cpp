@@ -22,8 +22,8 @@ MainComponent::MainComponent() : juce::AudioAppComponent(otherDeviceManager)
         setAudioChannels (2, 2);
     }
     
-    for (int i = 0; i < historyLength(); i++)
-        history.add(0);
+//    for (int i = 0; i < historyLength(); i++)
+//        history.add(0);
     
     visulizer.setSource(this);
     addAndMakeVisible(visulizer);
@@ -45,17 +45,55 @@ void MainComponent::getNextAudioBlock (const juce::AudioSourceChannelInfo& buffe
 {
     const int numberSamples = bufferToFill.numSamples;
     
+    const int stride = 20;
+    const int numToWrite = (numberSamples - currentHistoryOffset) / stride;
+    const int offsetStart = currentHistoryOffset%stride;
+
     //put one in history after each 10 samples
-    for (int i = 0; i < numberSamples; i+=10)
+    for (int i = 0; i < numToWrite; i++)
     {
-//        DBG(bufferToFill.buffer->getSample(0, i));
-        history.add(bufferToFill.buffer->getSample(0, i));
-        
-        if (history.size() > historyLength())
-            history.remove(0);
+        float sample = bufferToFill.buffer->getSample(0, offsetStart + stride * i);
+        historyQueue.write(&sample, 1);
     }
+
+    currentHistoryOffset = (currentHistoryOffset + numberSamples) % stride;
     
-    bufferToFill.clearActiveBufferRegion();
+//    juce::Array<float> block;
+//    block.ensureStorageAllocated(testSize);
+//    juce::FloatVectorOperations::clear(block.getRawDataPointer(), testSize);
+//    while (block.size() < testSize) {
+//        block.add(0);
+//    }
+//
+//    juce::FloatVectorOperations::copy(block.getRawDataPointer(), testSource.getRawDataPointer() + testPointer, testSize);
+//    testPointer += testSize;
+//
+//    DBG("------------------ testblock ----------------------");
+//    for (int i = 0; i < block.size(); i++)
+//    {
+//        DBG(block[i]);
+//    }
+//
+//    const int numToWrite = testSize > 0 ? (testSize - offset) / stride : 0;
+//    const int offsetStart = currentHistoryOffset%stride;
+//
+//    //put one in history after each 10 samples
+//    for (int i = 0; i < numToWrite; i++)
+//    {
+//        float sample = block[offsetStart + stride*i];
+//        testBuffer.add(sample);
+//    }
+//
+//    offset = (offset + testSize) % stride;
+//
+//
+//    DBG("------------------ testBuffer ----------------------");
+//    for (int i = 0; i < testBuffer.size(); i++)
+//    {
+//        DBG(testBuffer[i]);
+//    }
+//
+//    bufferToFill.clearActiveBufferRegion();
 }
 
 void MainComponent::releaseResources()
@@ -85,12 +123,22 @@ void MainComponent::resized()
 
 
 //==============================================================================
-int MainComponent::historyLength() const
+//int MainComponent::historyLength() const
+//{
+//    return 400;
+//}
+//
+//juce::Array<float> MainComponent::getHistory()
+//{
+//    return history;
+//}
+
+int MainComponent::getNumReady()
 {
-    return 400;
+    return historyQueue.getNumReady();
 }
 
-juce::Array<float> MainComponent::getHistory()
+int MainComponent::fill(juce::Array<float>* bufferToFill, int pos)
 {
-    return history;
+    return 0;
 }

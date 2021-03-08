@@ -23,9 +23,9 @@ public:
         
     }
 
-    virtual int historyLength() const = 0;
-    
-    virtual juce::Array<float> getHistory() = 0;
+    virtual int getNumReady() = 0;
+    //return number of filled samples
+    virtual int fill(juce::Array<float>* bufferToFill, int pos) = 0;
 };
 
 
@@ -56,5 +56,8 @@ private:
     juce::Image drawingImage;
     std::unique_ptr<juce::Graphics> drawingGraphic;
       
+    juce::Array<float> history;
+    int historySize { 512 };
+    int histroyPos { 0 }; //local write position
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (WaveVisualizer)
 };

@@ -69,6 +69,10 @@
 			isa = PBXBuildFile;
 			fileRef = E4EFB71F1501B26BF140BC19;
 		};
+		B15E2B13F3F9F6829551373E = {
+			isa = PBXBuildFile;
+			fileRef = 8D0F81FAB92901A3A54D3589;
+		};
 		5C1EC14BD2F87E7E84CA8DC3 = {
 			isa = PBXBuildFile;
 			fileRef = 0D44E0BA66AAA3AA617AC2A9;
@@ -144,6 +148,13 @@
 			name = WebKit.framework;
 			path = System/Library/Frameworks/WebKit.framework;
 			sourceTree = SDKROOT;
+		};
+		1B837548E02B9F6593742FE4 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = LockFreeQueue.h;
+			path = ../../Source/LockFreeQueue.h;
+			sourceTree = "SOURCE_ROOT";
 		};
 		2217CDEBB5BBC5817907C884 = {
 			isa = PBXFileReference;
@@ -292,6 +303,13 @@
 			path = System/Library/Frameworks/CoreAudioKit.framework;
 			sourceTree = SDKROOT;
 		};
+		8D0F81FAB92901A3A54D3589 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = LockFreeQueue.cpp;
+			path = ../../Source/LockFreeQueue.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		948350C3AB47311D83677999 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -424,6 +442,8 @@
 				2217CDEBB5BBC5817907C884,
 				0F313AD642FBF560F9A58846,
 				E4EFB71F1501B26BF140BC19,
+				1B837548E02B9F6593742FE4,
+				8D0F81FAB92901A3A54D3589,
 				CE79410D5931237CDC47ABCA,
 				0D44E0BA66AAA3AA617AC2A9,
 			);
@@ -784,6 +804,7 @@
 			files = (
 				88DEA710D6358AC36B872051,
 				9CCECC8057A28D72F1029ED8,
+				B15E2B13F3F9F6829551373E,
 				5C1EC14BD2F87E7E84CA8DC3,
 				FF2376C791B5634AEB4E31E4,
 				8ACA3278B4CFD52D471459FE,

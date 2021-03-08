@@ -14,7 +14,8 @@
 //==============================================================================
 WaveVisualizer::WaveVisualizer()
 {
-
+    history.ensureStorageAllocated(historySize);
+//    juce::FloatVectorOperations::clear(history.getRawDataPointer(), historySize);
 }
 
 WaveVisualizer::~WaveVisualizer()
@@ -31,26 +32,39 @@ void WaveVisualizer::paint (juce::Graphics& g)
     
     if (isOn && pSource != nullptr)
     {
-        juce::Array<float> history = pSource->getHistory();
-        
-        for (int i = 0; i < getWidth(); i++)
+        if (pSource->getNumReady() > 0)
         {
-            int scaledIndex = float(i*history.size()) / floor(getWidth());
-            float val = history[scaledIndex];
-            val = juce::jlimit<float>(-1, 1, val);
-
-            if (i == 0)
+            const int iterations = 512;
+            
+            int numAdded = pSource->fill(&history, histroyPos);
+            histroyPos = (histroyPos + numAdded) % historySize;
+            
+            for (int i = 0; i < iterations; i++)
             {
-                path.startNewSubPath(0, 1);
-                path.startNewSubPath(0, -1);
-                path.startNewSubPath(0, val);
+                
             }
-            else path.lineTo(i, val);
         }
         
-        // find the maximum sample value
-        max = juce::FloatVectorOperations::findMaximum(history.getRawDataPointer(), history.size());
-        max = juce::jlimit<float>(0, 2, max);
+//        juce::Array<float> history = pSource->getHistory();
+//
+//        for (int i = 0; i < getWidth(); i++)
+//        {
+//            int scaledIndex = float(i*history.size()) / floor(getWidth());
+//            float val = history[scaledIndex];
+//            val = juce::jlimit<float>(-1, 1, val);
+//
+//            if (i == 0)
+//            {
+//                path.startNewSubPath(0, 1);
+//                path.startNewSubPath(0, -1);
+//                path.startNewSubPath(0, val);
+//            }
+//            else path.lineTo(i, val);
+//        }
+//
+//        // find the maximum sample value
+//        max = juce::FloatVectorOperations::findMaximum(history.getRawDataPointer(), history.size());
+//        max = juce::jlimit<float>(0, 2, max);
     }
     
 
