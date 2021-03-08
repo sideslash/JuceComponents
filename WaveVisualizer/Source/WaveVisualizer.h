@@ -52,7 +52,7 @@ private:
     
     bool isOn { false };
     
-    int refreshRate { 10 };
+    int refreshRate { 20 };
     juce::Image drawingImage;
     std::unique_ptr<juce::Graphics> drawingGraphic;
       

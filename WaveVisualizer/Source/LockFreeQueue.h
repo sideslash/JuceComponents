@@ -18,8 +18,10 @@ public:
     LockFreeQueue(int size = 512);
     
     int getNumReady();
-    void write(const float* writeData, int numToWrite);
-    void read(float* readData, int numToRead);
+    void writeFrom(const float* writeData, int numToWrite);
+    void readTo(float* readData, int numToRead);
+    void dropExcess(int gateNum);
+    
 private:
     int mSize;
     

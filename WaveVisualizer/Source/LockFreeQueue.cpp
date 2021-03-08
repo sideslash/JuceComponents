@@ -20,9 +20,10 @@ LockFreeQueue::LockFreeQueue(int size) : mSize(size)
     while (mBuffer.size() < mSize) {
         mBuffer.add(1.0);
     }
+    
 }
 
-void LockFreeQueue::write(const float* writeData, int numToWrite)
+void LockFreeQueue::writeFrom(const float* writeData, int numToWrite)
 {
     int startIndex1, blockSize1, startIndex2, blockSize2;
     
@@ -36,7 +37,7 @@ void LockFreeQueue::write(const float* writeData, int numToWrite)
     mFifo->finishedWrite(numToWrite);
 }
 
-void LockFreeQueue::read(float* readData, int numToRead)
+void LockFreeQueue::readTo(float* readData, int numToRead)
 {
     int startIndex1, blockSize1, startIndex2, blockSize2;
     
@@ -47,7 +48,14 @@ void LockFreeQueue::read(float* readData, int numToRead)
     if (blockSize2 > 0)
         juce::FloatVectorOperations::copy(readData + blockSize1, mBuffer.getRawDataPointer() + startIndex2, blockSize2);
     
-    mFifo->finishedRead(numToRead);
+    mFifo->finishedRead(blockSize1 + blockSize2);
+}
+
+void LockFreeQueue::dropExcess(int gateNum)
+{
+    while (getNumReady() > gateNum) {
+        mFifo->finishedRead(getNumReady() - gateNum);
+    }
 }
 
 int LockFreeQueue::getNumReady()

@@ -42,16 +42,16 @@ private:
     std::unique_ptr<juce::AudioDeviceSelectorComponent> audioSetting;
     
     LockFreeQueue historyQueue;
-    //current sample offset for next block of samples to count in
-    int currentHistoryOffset = 0;
+    // number of samples of last stride past
+    int strideOffset { 0 };
+    const int stride { 20 };
     
-    
-    juce::Array<float> testSource {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31};
-    juce::Array<float> testBuffer;
-    int testSize { 10 };
-    int testPointer { 0 };
-    int stride { 3 };
-    int offset { 0 };
+//    juce::Array<float> testSource {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31};
+//    juce::Array<float> testBuffer;
+//    int testSize { 10 };
+//    int testPointer { 0 };
+//    int stride { 3 };
+//    int offset { 0 };
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
 };

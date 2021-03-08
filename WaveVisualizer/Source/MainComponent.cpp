@@ -27,6 +27,7 @@ MainComponent::MainComponent() : juce::AudioAppComponent(otherDeviceManager)
     
     visulizer.setSource(this);
     addAndMakeVisible(visulizer);
+    
 }
 
 MainComponent::~MainComponent()
@@ -44,19 +45,19 @@ void MainComponent::prepareToPlay (int samplesPerBlockExpected, double sampleRat
 void MainComponent::getNextAudioBlock (const juce::AudioSourceChannelInfo& bufferToFill)
 {
     const int numberSamples = bufferToFill.numSamples;
-    
-    const int stride = 20;
-    const int numToWrite = (numberSamples - currentHistoryOffset) / stride;
-    const int offsetStart = currentHistoryOffset%stride;
+
+    const int startSample = strideOffset > 0 ? (stride - strideOffset) : 0;
+    // ceiling for dividing result of two integer: (M+N-1) / N
+    const int numToWrite = ((numberSamples - startSample) + stride - 1) / stride;
 
     //put one in history after each 10 samples
     for (int i = 0; i < numToWrite; i++)
     {
-        float sample = bufferToFill.buffer->getSample(0, offsetStart + stride * i);
-        historyQueue.write(&sample, 1);
+        float sample = bufferToFill.buffer->getSample(0, startSample + stride * i);
+        historyQueue.writeFrom(&sample, 1);
     }
 
-    currentHistoryOffset = (currentHistoryOffset + numberSamples) % stride;
+    strideOffset = (numberSamples + strideOffset) % stride;
     
 //    juce::Array<float> block;
 //    block.ensureStorageAllocated(testSize);
@@ -74,17 +75,18 @@ void MainComponent::getNextAudioBlock (const juce::AudioSourceChannelInfo& buffe
 //        DBG(block[i]);
 //    }
 //
-//    const int numToWrite = testSize > 0 ? (testSize - offset) / stride : 0;
-//    const int offsetStart = currentHistoryOffset%stride;
+//    const int startSample = strideOffset > 0 ? (stride - strideOffset) : 0;
+//    // ceiling for dividing result of two integer: (M+N-1) / N
+//    const int numToWrite = ((testSize - startSample) + stride - 1) / stride;
 //
 //    //put one in history after each 10 samples
 //    for (int i = 0; i < numToWrite; i++)
 //    {
-//        float sample = block[offsetStart + stride*i];
+//        float sample = block[startSample + stride*i];
 //        testBuffer.add(sample);
 //    }
 //
-//    offset = (offset + testSize) % stride;
+//    strideOffset = (testSize + strideOffset) % stride;
 //
 //
 //    DBG("------------------ testBuffer ----------------------");
@@ -92,8 +94,8 @@ void MainComponent::getNextAudioBlock (const juce::AudioSourceChannelInfo& buffe
 //    {
 //        DBG(testBuffer[i]);
 //    }
-//
-//    bufferToFill.clearActiveBufferRegion();
+
+    bufferToFill.clearActiveBufferRegion();
 }
 
 void MainComponent::releaseResources()
@@ -140,5 +142,21 @@ int MainComponent::getNumReady()
 
 int MainComponent::fill(juce::Array<float>* bufferToFill, int pos)
 {
-    return 0;
+    //DRAIN the excess
+    historyQueue.dropExcess(bufferToFill->size());
+    
+    const int numToAppend = historyQueue.getNumReady();
+    
+    if (pos + numToAppend < bufferToFill->size())
+    {
+        historyQueue.readTo(&bufferToFill->getRawDataPointer()[pos], numToAppend);
+    }
+    else
+    {
+        int numToEnd = bufferToFill->size() - pos;
+        historyQueue.readTo(&bufferToFill->getRawDataPointer()[pos], numToEnd);
+        historyQueue.readTo(&bufferToFill->getRawDataPointer()[0], numToAppend - numToEnd);
+    }
+    
+    return numToAppend;
 }
