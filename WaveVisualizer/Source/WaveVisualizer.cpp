@@ -24,49 +24,69 @@ WaveVisualizer::~WaveVisualizer()
 
 void WaveVisualizer::paint (juce::Graphics& g)
 {
-    g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));   // clear the background
-
-    if (!isOn) return;;
-    if (pSource == nullptr) return;
-
-    juce::Array<float> history = pSource->getHistory();
+    g.fillAll (juce::Colours::black);
+    
     juce::Path path;
-
-    for (int i = 0; i < getWidth(); i++)
+    float max = 0;
+    
+    if (isOn && pSource != nullptr)
     {
-        int scaledIndex = float(i*history.size()) / floor(getWidth());
-        float val = history[scaledIndex];
-        val = juce::jlimit<float>(-1, 1, val);
-
-        if (i == 0)
+        juce::Array<float> history = pSource->getHistory();
+        
+        for (int i = 0; i < getWidth(); i++)
         {
-            path.startNewSubPath(0, 1);
-            path.startNewSubPath(0, -1);
-            path.startNewSubPath(0, val);
+            int scaledIndex = float(i*history.size()) / floor(getWidth());
+            float val = history[scaledIndex];
+            val = juce::jlimit<float>(-1, 1, val);
+
+            if (i == 0)
+            {
+                path.startNewSubPath(0, 1);
+                path.startNewSubPath(0, -1);
+                path.startNewSubPath(0, val);
+            }
+            else path.lineTo(i, val);
         }
-        else path.lineTo(i, val);
+        
+        // find the maximum sample value
+        max = juce::FloatVectorOperations::findMaximum(history.getRawDataPointer(), history.size());
+        max = juce::jlimit<float>(0, 2, max);
     }
+    
 
     if (path.isEmpty()) return;;
     if (path.getBounds().getWidth() < 0.01) return;
 
-    path.scaleToFit(0, 0, getWidth(), getHeight(), false);
+    // rescale path to fit size
+    path.scaleToFit(0, 0.1*drawingImage.getHeight(), drawingImage.getWidth(), 0.8*drawingImage.getHeight(), false);
 
-//    historyGraphic->setColour(juce::Colours::white);
-//    historyGraphic->strokePath(path, juce::PathStrokeType(2));
-    g.setColour(juce::Colours::white);
-    g.strokePath(path, juce::PathStrokeType (1));
-
-//    g.drawImageAt(historyImage, 0, 0);
-
-    g.setColour (juce::Colours::grey);
-    g.drawRect (getLocalBounds(), 1);
+    // fade
+    drawingImage.multiplyAllAlphas(0.6);
+    
+    // move wave form
+    drawingImage.moveImageSection(-3, -10, 0, 0, drawingImage.getWidth(), drawingImage.getHeight());
+    
+    // Gradient
+    juce::Colour c = juce::Colours::green;
+    c = c.withRotatedHue(0.5*max);
+    juce::ColourGradient grad(c, drawingImage.getWidth()/2, drawingImage.getHeight()/2, c.withBrightness(0.7*max), 0, drawingImage.getHeight()/2, true);
+    drawingGraphic->setGradientFill(grad);
+    
+    // stroke wave path onto image's graphics
+    drawingGraphic->strokePath(path, juce::PathStrokeType(2));
+    
+    //draw wave image
+    g.drawImageAt(drawingImage, 0, 0);
+    
+    // draw border
+//    g.drawRect (getLocalBounds(), 2);
 }
 
 
 void WaveVisualizer::resized()
 {
-    
+    drawingImage = juce::Image(juce::Image::PixelFormat::ARGB, getWidth(), getHeight(), true);
+    drawingGraphic = std::make_unique<juce::Graphics>(drawingImage);
 }
 
 //==============================================================================

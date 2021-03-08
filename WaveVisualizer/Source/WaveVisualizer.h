@@ -53,8 +53,8 @@ private:
     bool isOn { false };
     
     int refreshRate { 10 };
-//    juce::Image historyImage;
-//    std::unique_ptr<juce::Graphics> historyGraphic;
+    juce::Image drawingImage;
+    std::unique_ptr<juce::Graphics> drawingGraphic;
       
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (WaveVisualizer)
 };

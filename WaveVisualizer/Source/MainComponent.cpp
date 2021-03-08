@@ -78,7 +78,7 @@ void MainComponent::resized()
 {
     auto bounds = getLocalBounds();
 
-    visulizer.setBounds(bounds.removeFromTop(300).reduced(10));
+    visulizer.setBounds(bounds.removeFromTop(200).reduced(10));
     
     audioSetting->setBounds(bounds.reduced(10));
 }

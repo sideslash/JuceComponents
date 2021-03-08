@@ -152,12 +152,33 @@
 			path = ../../Source/Main.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
+		249D3F07B5BDF577EA4E884B = {
+			isa = PBXFileReference;
+			lastKnownFileType = file;
+			name = "juce_gui_basics";
+			path = "/Users/xhkj/Desktop/JUCE/modules/juce_gui_basics";
+			sourceTree = "<absolute>";
+		};
+		2A843960A31511D83831D69E = {
+			isa = PBXFileReference;
+			lastKnownFileType = file;
+			name = "juce_graphics";
+			path = "/Users/xhkj/Desktop/JUCE/modules/juce_graphics";
+			sourceTree = "<absolute>";
+		};
 		301C5D3A10C4ED2BE0C3C060 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
 			name = "include_juce_audio_devices.mm";
 			path = "../../JuceLibraryCode/include_juce_audio_devices.mm";
 			sourceTree = "SOURCE_ROOT";
+		};
+		350E625BE1A6E9175F2D8F1A = {
+			isa = PBXFileReference;
+			lastKnownFileType = file;
+			name = "juce_audio_devices";
+			path = "/Users/xhkj/Desktop/JUCE/modules/juce_audio_devices";
+			sourceTree = "<absolute>";
 		};
 		358C27C62ADEF5F170598E80 = {
 			isa = PBXFileReference;
@@ -194,13 +215,6 @@
 			path = System/Library/Frameworks/IOKit.framework;
 			sourceTree = SDKROOT;
 		};
-		57B009D48B5ECD96430D8094 = {
-			isa = PBXFileReference;
-			lastKnownFileType = file;
-			name = "juce_audio_devices";
-			path = "/Users/fksky/WH/JUCE/modules/juce_audio_devices";
-			sourceTree = "<absolute>";
-		};
 		67C1E3408A742E25BB6726B4 = {
 			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
@@ -229,19 +243,19 @@
 			path = "../../JuceLibraryCode/include_juce_audio_utils.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
+		7628DC75EB573D505C069E26 = {
+			isa = PBXFileReference;
+			lastKnownFileType = file;
+			name = "juce_events";
+			path = "/Users/xhkj/Desktop/JUCE/modules/juce_events";
+			sourceTree = "<absolute>";
+		};
 		79A9B611D3D7E1980262EE2A = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
 			name = "include_juce_audio_basics.mm";
 			path = "../../JuceLibraryCode/include_juce_audio_basics.mm";
 			sourceTree = "SOURCE_ROOT";
-		};
-		7FAAB6E9510E86ABC21E3DBE = {
-			isa = PBXFileReference;
-			lastKnownFileType = file;
-			name = "juce_audio_utils";
-			path = "/Users/fksky/WH/JUCE/modules/juce_audio_utils";
-			sourceTree = "<absolute>";
 		};
 		81C9A79EE06413984AF0459C = {
 			isa = PBXFileReference;
@@ -278,13 +292,6 @@
 			path = System/Library/Frameworks/CoreAudioKit.framework;
 			sourceTree = SDKROOT;
 		};
-		935FE509C75B7C7CA82DFB3C = {
-			isa = PBXFileReference;
-			lastKnownFileType = file;
-			name = "juce_audio_processors";
-			path = "/Users/fksky/WH/JUCE/modules/juce_audio_processors";
-			sourceTree = "<absolute>";
-		};
 		948350C3AB47311D83677999 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -292,18 +299,11 @@
 			path = ../../JuceLibraryCode/JuceHeader.h;
 			sourceTree = "SOURCE_ROOT";
 		};
-		96A42E9BDBA0046DE9A34698 = {
+		A55210EBCB02D0E5C7A0E242 = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
 			name = "juce_audio_basics";
-			path = "/Users/fksky/WH/JUCE/modules/juce_audio_basics";
-			sourceTree = "<absolute>";
-		};
-		A48BE084C0CB9791F5C95A61 = {
-			isa = PBXFileReference;
-			lastKnownFileType = file;
-			name = "juce_gui_extra";
-			path = "/Users/fksky/WH/JUCE/modules/juce_gui_extra";
+			path = "/Users/xhkj/Desktop/JUCE/modules/juce_audio_basics";
 			sourceTree = "<absolute>";
 		};
 		A5F49C1088B091CF359ED4DF = {
@@ -320,11 +320,11 @@
 			path = System/Library/Frameworks/AudioToolbox.framework;
 			sourceTree = SDKROOT;
 		};
-		B2A360315C694542F37DF2E8 = {
+		B142CA3C5F64487ECBB59397 = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
-			name = "juce_core";
-			path = "/Users/fksky/WH/JUCE/modules/juce_core";
+			name = "juce_gui_extra";
+			path = "/Users/xhkj/Desktop/JUCE/modules/juce_gui_extra";
 			sourceTree = "<absolute>";
 		};
 		BD1BD8DA42D0B6462481395B = {
@@ -334,6 +334,13 @@
 			path = System/Library/Frameworks/Accelerate.framework;
 			sourceTree = SDKROOT;
 		};
+		BF0EC5D6E3A079F7857947CE = {
+			isa = PBXFileReference;
+			lastKnownFileType = file;
+			name = "juce_audio_processors";
+			path = "/Users/xhkj/Desktop/JUCE/modules/juce_audio_processors";
+			sourceTree = "<absolute>";
+		};
 		C3230F6B8F68EEAE627DC108 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -341,18 +348,18 @@
 			path = "../../JuceLibraryCode/include_juce_core.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
-		C54F98F5D437B1629D55F596 = {
+		C7266300C3338CA5542A0518 = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
 			name = "juce_data_structures";
-			path = "/Users/fksky/WH/JUCE/modules/juce_data_structures";
+			path = "/Users/xhkj/Desktop/JUCE/modules/juce_data_structures";
 			sourceTree = "<absolute>";
 		};
-		CDB7A5B7B77CA2B385DBA3DC = {
+		CE49D3FE57524832F1EC22E2 = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
-			name = "juce_graphics";
-			path = "/Users/fksky/WH/JUCE/modules/juce_graphics";
+			name = "juce_core";
+			path = "/Users/xhkj/Desktop/JUCE/modules/juce_core";
 			sourceTree = "<absolute>";
 		};
 		CE79410D5931237CDC47ABCA = {
@@ -362,18 +369,11 @@
 			path = ../../Source/WaveVisualizer.h;
 			sourceTree = "SOURCE_ROOT";
 		};
-		D1A8ADF6E3B6C7C55B063F47 = {
-			isa = PBXFileReference;
-			lastKnownFileType = file;
-			name = "juce_events";
-			path = "/Users/fksky/WH/JUCE/modules/juce_events";
-			sourceTree = "<absolute>";
-		};
-		D7094AB165B7B01EFD0AA3BA = {
+		D9269BA9E312B2848C729086 = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
 			name = "juce_audio_formats";
-			path = "/Users/fksky/WH/JUCE/modules/juce_audio_formats";
+			path = "/Users/xhkj/Desktop/JUCE/modules/juce_audio_formats";
 			sourceTree = "<absolute>";
 		};
 		DC5CA2E696A8B05FF259762C = {
@@ -397,19 +397,19 @@
 			path = ../../Source/MainComponent.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
+		EB88E4D7B61F8D2E10811713 = {
+			isa = PBXFileReference;
+			lastKnownFileType = file;
+			name = "juce_audio_utils";
+			path = "/Users/xhkj/Desktop/JUCE/modules/juce_audio_utils";
+			sourceTree = "<absolute>";
+		};
 		F93E53DAE53063A91A587190 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
 			name = "include_juce_events.mm";
 			path = "../../JuceLibraryCode/include_juce_events.mm";
 			sourceTree = "SOURCE_ROOT";
-		};
-		FAD4C9A02D45EA54B5DE2220 = {
-			isa = PBXFileReference;
-			lastKnownFileType = file;
-			name = "juce_gui_basics";
-			path = "/Users/fksky/WH/JUCE/modules/juce_gui_basics";
-			sourceTree = "<absolute>";
 		};
 		FEDF17F3A6AF2AEFB18CC41C = {
 			isa = PBXFileReference;
@@ -441,17 +441,17 @@
 		97763158A5C3829FEBCDEBB5 = {
 			isa = PBXGroup;
 			children = (
-				96A42E9BDBA0046DE9A34698,
-				57B009D48B5ECD96430D8094,
-				D7094AB165B7B01EFD0AA3BA,
-				935FE509C75B7C7CA82DFB3C,
-				7FAAB6E9510E86ABC21E3DBE,
-				B2A360315C694542F37DF2E8,
-				C54F98F5D437B1629D55F596,
-				D1A8ADF6E3B6C7C55B063F47,
-				CDB7A5B7B77CA2B385DBA3DC,
-				FAD4C9A02D45EA54B5DE2220,
-				A48BE084C0CB9791F5C95A61,
+				A55210EBCB02D0E5C7A0E242,
+				350E625BE1A6E9175F2D8F1A,
+				D9269BA9E312B2848C729086,
+				BF0EC5D6E3A079F7857947CE,
+				EB88E4D7B61F8D2E10811713,
+				CE49D3FE57524832F1EC22E2,
+				C7266300C3338CA5542A0518,
+				7628DC75EB573D505C069E26,
+				2A843960A31511D83831D69E,
+				249D3F07B5BDF577EA4E884B,
+				B142CA3C5F64487ECBB59397,
 			);
 			name = "JUCE Modules";
 			sourceTree = "<group>";
@@ -571,7 +571,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../../JuceLibraryCode",
-					"/Users/fksky/WH/JUCE/modules",
+					"/Users/xhkj/Desktop/JUCE/modules",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Info-App.plist;
@@ -580,7 +580,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../../JuceLibraryCode",
-					"/Users/fksky/WH/JUCE/modules",
+					"/Users/xhkj/Desktop/JUCE/modules",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.WaveVisualizer;
 				PRODUCT_NAME = "WaveVisualizer";
@@ -636,7 +636,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../../JuceLibraryCode",
-					"/Users/fksky/WH/JUCE/modules",
+					"/Users/xhkj/Desktop/JUCE/modules",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Info-App.plist;
@@ -646,7 +646,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../../JuceLibraryCode",
-					"/Users/fksky/WH/JUCE/modules",
+					"/Users/xhkj/Desktop/JUCE/modules",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.WaveVisualizer;
 				PRODUCT_NAME = "WaveVisualizer";
