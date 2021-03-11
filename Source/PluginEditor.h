@@ -30,8 +30,8 @@ public:
 private:
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
-    JuceComponentsAudioProcessor& audioProcessor;
-
+//    JuceComponentsAudioProcessor& audioProcessor;
+    std::shared_ptr<JuceComponentsAudioProcessor> audioProcessor;
 //    juce::Array<float> history;
     
 //    juce::AudioDeviceManager otherDeviceManager;

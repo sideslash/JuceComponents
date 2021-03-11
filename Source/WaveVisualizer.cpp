@@ -33,13 +33,16 @@ void WaveVisualizer::paint (juce::Graphics& g)
     juce::Path path;
     float max = 0;
     
-    if (isOn && pSource != nullptr)
-    {
-        if (pSource->getNumReady() > 0)
-        {
-            int numAdded = pSource->fill(&history, histroyPos);
-            histroyPos = (histroyPos + numAdded) % historySize;
     
+    if (isOn)
+    {
+        if (std::shared_ptr<WaveVisualizerSource> ps = pSource.lock())
+        {
+            if (ps->getNumReady() > 0)
+            {
+                int numAdded = ps->fill(&history, histroyPos);
+                histroyPos = (histroyPos + numAdded) % historySize;
+            }
         }
         
         for (int i = 0; i < getWidth(); i++)
@@ -99,9 +102,9 @@ void WaveVisualizer::resized()
 }
 
 //==============================================================================
-void WaveVisualizer::setSource(WaveVisualizerSource *source)
+void WaveVisualizer::setSource(std::shared_ptr<WaveVisualizerSource>& source)
 {
-    pSource = std::shared_ptr<WaveVisualizerSource>(source);
+    pSource = source;
 }
 
 void WaveVisualizer::turnOn()

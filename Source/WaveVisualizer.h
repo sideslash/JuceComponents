@@ -18,9 +18,12 @@
 class WaveVisualizerSource
 {
 public:
+//    WaveVisualizerSource()
+//    {
+//        
+//    }
     virtual ~WaveVisualizerSource()
     {
-        
     }
 
     virtual int getNumReady() = 0;
@@ -40,7 +43,7 @@ public:
     void resized() override;
 
     //----------------------------
-    void setSource(WaveVisualizerSource *source);
+    void setSource(std::shared_ptr<WaveVisualizerSource>& source);
     void turnOn();
     void turnOff();
     
@@ -48,7 +51,7 @@ public:
     void timerCallback() override;
 private:
     
-    std::shared_ptr<WaveVisualizerSource> pSource;
+    std::weak_ptr<WaveVisualizerSource> pSource;
     
     bool isOn { false };
     

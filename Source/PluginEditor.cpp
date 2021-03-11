@@ -11,11 +11,13 @@
 
 //==============================================================================
 JuceComponentsAudioProcessorEditor::JuceComponentsAudioProcessorEditor (JuceComponentsAudioProcessor& p)
-    : AudioProcessorEditor (&p), audioProcessor (p)
+    : AudioProcessorEditor (&p), audioProcessor (&p)
 {
     setSize (400, 600);
+
+    auto sp = std::dynamic_pointer_cast<WaveVisualizerSource>(audioProcessor);
+    visulizer.setSource(sp);
     
-    visulizer.setSource(&audioProcessor);
     addAndMakeVisible(visulizer);
     visulizer.turnOn();
 }
